@@ -34,6 +34,6 @@ t.create_grid(msp)
 
 ta = TextArray(**TEXT_PARAMETRS)
 
-ta.insert_text(msp, t.gird[0][0], "112421")
+ta.generate_text(msp, t.grid, "112421")
 
 doc.saveas("test.dxf")

@@ -15,3 +15,8 @@ class TextArray:
                 "style": self.style,
             },
         ).set_pos(position, align="LEFT")
+
+    def generate_text(self, msp, grid, start_number):
+        for row in grid:
+            for cell in row:
+                self.insert_text(msp, cell, start_number)
