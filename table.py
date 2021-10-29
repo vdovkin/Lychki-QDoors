@@ -6,6 +6,7 @@ class Table:
         self.num_x = num_x
         self.num_y = num_y
         self.layer = layer
+        self.generete_cell_grid()
 
     def create_x_line(self, basic_point, msp):
         for i in range(self.num_x):
@@ -40,3 +41,17 @@ class Table:
             self.create_y_line(bp, msp)
             bp["x"] += self.lenght_x
             bp["y"] -= self.lenght_y * self.num_y
+
+    def generete_cell_grid(self):
+        grid = []
+        x_point = self.lenght_x
+        y_point = self.lenght_y * (self.num_y - 1)
+
+        for j in range(self.num_y):
+            row = []
+            for i in range(self.num_x):
+                cell = (x_point + self.lenght_x * i, y_point)
+                row.append(cell)
+            grid.append(row)
+            y_point -= self.lenght_y
+        self.gird = grid

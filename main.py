@@ -34,5 +34,4 @@ msp.add_text(
 t = Table(**PARAMETRS)
 t.create_grid(msp)
 
-
-doc.saveas("test3.dxf")
+doc.saveas("test.dxf")
