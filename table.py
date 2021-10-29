@@ -54,4 +54,4 @@ class Table:
                 row.append(cell)
             grid.append(row)
             y_point -= self.lenght_y
-        self.gird = grid
+        self.grid = grid
