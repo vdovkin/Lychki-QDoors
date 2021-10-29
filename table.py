@@ -55,3 +55,6 @@ class Table:
             grid.append(row)
             y_point -= self.lenght_y
         self.grid = grid
+
+    def shape(self):
+        return (self.num_x, self.num_y)
