@@ -8,38 +8,48 @@ doc.layers.add("TABLE")
 msp = doc.modelspace()
 
 
-def create_x_line(basic_point, lenght, number, layer="TABLE"):
-    for i in range(number):
-        msp.add_line(
-            (basic_point["x"], basic_point["y"]),
-            (basic_point["x"] + lenght, basic_point["y"]),
-            dxfattribs={"layer": layer},
-        )
-        basic_point["x"] += lenght
+class Table:
+    def __init__(self, basic_point, lenght_x, lenght_y, num_x, num_y, layer):
+        self.basic_point = basic_point
+        self.lenght_x = lenght_x
+        self.lenght_y = lenght_y
+        self.num_x = num_x
+        self.num_y = num_y
+        self.layer = layer
 
+    def create_x_line(self, basic_point):
+        for i in range(self.num_x):
+            msp.add_line(
+                (basic_point["x"], basic_point["y"]),
+                (basic_point["x"] + self.lenght_x, basic_point["y"]),
+                dxfattribs={"layer": self.layer},
+            )
+            basic_point["x"] += self.lenght_x
 
-def create_y_line(basic_point, lenght, number, layer="TABLE"):
-    for i in range(number):
-        msp.add_line(
-            (basic_point["x"], basic_point["y"]),
-            (basic_point["x"], basic_point["y"] + lenght),
-            dxfattribs={"layer": layer},
-        )
-        basic_point["y"] += lenght
+    def create_y_line(self, basic_point):
+        for i in range(self.num_y):
+            msp.add_line(
+                (basic_point["x"], basic_point["y"]),
+                (basic_point["x"], basic_point["y"] + self.lenght_y),
+                dxfattribs={"layer": self.layer},
+            )
+            basic_point["y"] += self.lenght_y
 
-
-def create_grid(basic_point, lenght_x, lenght_y, num_x, num_y):
-    bp = basic_point.copy()
-    for i in range(num_y + 1):
-        create_x_line(bp, lenght_x, num_x)
-        bp["x"] -= lenght_x * num_x
-        bp["y"] += lenght_y
-
-    bp = basic_point.copy()
-    for i in range(num_x + 1):
-        create_y_line(bp, lenght_y, num_y)
-        bp["x"] += lenght_x
-        bp["y"] -= lenght_y * num_y
+    def create_grid(self):
+        # set basic point
+        bp = self.basic_point.copy()
+        # create all rows
+        for i in range(self.num_y + 1):
+            self.create_x_line(bp)
+            bp["x"] -= self.lenght_x * self.num_x
+            bp["y"] += self.lenght_y
+        # reset basic point
+        bp = self.basic_point.copy()
+        # create all columns
+        for i in range(self.num_x + 1):
+            self.create_y_line(bp)
+            bp["x"] += self.lenght_x
+            bp["y"] -= self.lenght_y * self.num_y
 
 
 PARAMETRS = {
@@ -48,9 +58,11 @@ PARAMETRS = {
     "lenght_y": 89.75,
     "num_x": 17,
     "num_y": 11,
+    "layer": "TABLE",
 }
 
-
-create_grid(**PARAMETRS)
+t = Table(**PARAMETRS)
+t.create_grid()
+# create_grid(**PARAMETRS)
 
 doc.saveas("test.dxf")
