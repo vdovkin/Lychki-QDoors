@@ -32,8 +32,8 @@ TEXT_PARAMETRS = {
 t = Table(**TABLE_PARAMETRS)
 t.create_grid(msp)
 
-ta = TextArray(**TEXT_PARAMETRS)
+ta = TextArray(**TEXT_PARAMETRS, start_number=112421)
 
-ta.generate_text(msp, t.grid, "112421")
+ta.generate_text(msp, t.grid)
 
 doc.saveas("test.dxf")
