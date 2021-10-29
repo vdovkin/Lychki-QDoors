@@ -15,7 +15,7 @@ msp = doc.modelspace()
 TABLE_PARAMETRS = {
     "basic_point": {"x": 0, "y": 0},
     "lenght_x": 30,
-    "lenght_y": 95,
+    "lenght_y": 96,
     "num_x": 17,
     "num_y": 11,
     "layer": "TABLE",
@@ -28,12 +28,12 @@ TEXT_PARAMETRS = {
     "style": "font-Arial",
 }
 
+start_number = 112421
 
-t = Table(**TABLE_PARAMETRS)
-t.create_grid(msp)
 
-ta = TextArray(**TEXT_PARAMETRS, start_number=112421)
-
-ta.generate_text(msp, t.grid)
+table = Table(**TABLE_PARAMETRS)
+table.create_grid(msp)
+text = TextArray(**TEXT_PARAMETRS, start_number=start_number)
+text.generate_text(msp, table.grid)
 
 doc.saveas("test.dxf")
