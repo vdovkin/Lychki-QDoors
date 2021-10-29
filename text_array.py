@@ -17,7 +17,19 @@ class TextArray:
             },
         ).set_pos(position, align="LEFT")
 
+    def generate_numbers(self, row, columns):
+        numbers_grid = []
+        number = self.start_number
+        for i in range(row):
+            row_numbers = [str(number + x * 11) for x in range(columns)]
+            numbers_grid.append(row_numbers)
+            number += 1
+        self.numbers_grid = numbers_grid
+
     def generate_text(self, msp, grid):
-        for row in grid:
-            for cell in row:
-                self.insert_text(msp, cell, str(self.start_number))
+        rows = len(grid)
+        cols = len(grid[0])
+        self.generate_numbers(rows, cols)
+        for i in range(rows):
+            for j in range(cols):
+                self.insert_text(msp, grid[i][j], self.numbers_grid[i][j])
