@@ -10,7 +10,7 @@ TABLE_PARAMETRS = {
 TEXT_PARAMETRS = {
     "font_height": 18.7,
     "font_rotation": 90,
-    "margin": (-3.5, -1),
+    "margin": (-3.5, -2.35),
     "style": "font-Arial",
 }
 
