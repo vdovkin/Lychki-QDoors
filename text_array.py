@@ -7,7 +7,7 @@ class TextArray:
         self.start_number = start_number
 
     def insert_text(self, msp, cell, text):
-        position = (cell[0] - self.margin[0], cell[1] + self.margin[1])
+        position = (cell[0] + self.margin[0], cell[1] + self.margin[1])
         msp.add_text(
             text,
             dxfattribs={
@@ -15,7 +15,7 @@ class TextArray:
                 "rotation": self.font_rotation,
                 "style": self.style,
             },
-        ).set_pos(position, align="LEFT")
+        ).set_pos(position, align="RIGHT")
 
     def generate_numbers(self, row, columns):
         numbers_grid = []

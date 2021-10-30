@@ -45,7 +45,7 @@ class Table:
     def generete_cell_grid(self):
         grid = []
         x_point = self.lenght_x
-        y_point = self.lenght_y * (self.num_y - 1)
+        y_point = self.lenght_y * self.num_y
 
         for j in range(self.num_y):
             row = []
