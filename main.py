@@ -6,6 +6,16 @@ from text_array import TextArray
 from parametrs import TABLE_PARAMETRS, TEXT_PARAMETRS, NUMBER_SIZE
 
 
+def starting_zeros(input_text):
+    zeros = ""
+    for c in input_text:
+        if c == "0":
+            zeros += c
+        else:
+            break
+    return zeros
+
+
 def get_start_number():
     while True:
         input_str = (input("Введите базовый номер: ")).strip()
@@ -15,13 +25,16 @@ def get_start_number():
             print(f"Число должно быть из {NUMBER_SIZE} знаков")
             continue
         else:
+            zeros = ""
+            if input_str[0] == "0":
+                zeros = starting_zeros(input_str)
             try:
                 number = int(input_str)
             except ValueError:
                 print("Вы ввели не число")
                 continue
             else:
-                return number
+                return number, zeros
 
 
 def get_file_name():
@@ -49,7 +62,7 @@ def save_file(doc, file_name):
 
 
 def quit_program(input_str):
-    return input_str.lower() == "q"
+    return input_str.strip().lower() == "q"
 
 
 def display_start_info():
@@ -61,22 +74,21 @@ def display_start_info():
 
 
 def programm():
+    display_start_info()
     while True:
-        start_number = get_start_number()
+        start_number, zeros = get_start_number()
         file_name = get_file_name()
 
         # Create a new DXF document.
         doc = ezdxf.new(dxfversion="R2010")
-
         doc.layers.add(TABLE_PARAMETRS["layer"])
-
         doc.styles.new("font-Arial", dxfattribs={"font": "Arial"})
-
         msp = doc.modelspace()
 
         table = Table(**TABLE_PARAMETRS)
         table.create_grid(msp)
-        text = TextArray(**TEXT_PARAMETRS, start_number=start_number)
+
+        text = TextArray(**TEXT_PARAMETRS, start_number=start_number, zeros=zeros)
         text.generate_text(msp, table.grid)
 
         save_file(doc, file_name)
@@ -88,7 +100,7 @@ def programm():
             if quit_program(input_str):
                 quit()
 
-            if input_str.lower() == "y":
+            if input_str.strip().lower() == "y":
                 break
 
 
