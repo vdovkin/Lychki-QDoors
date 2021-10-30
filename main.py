@@ -3,33 +3,7 @@ import ezdxf
 from table import Table
 from text_array import TextArray
 
-# Create a new DXF document.
-doc = ezdxf.new(dxfversion="R2010")
-
-doc.layers.add("TABLE")
-
-doc.styles.new("font-Arial", dxfattribs={"font": "Arial"})
-
-msp = doc.modelspace()
-
-TABLE_PARAMETRS = {
-    "basic_point": {"x": 0, "y": 0},
-    "lenght_x": 30,
-    "lenght_y": 96,
-    "num_x": 17,
-    "num_y": 11,
-    "layer": "TABLE",
-}
-
-TEXT_PARAMETRS = {
-    "font_height": 20,
-    "font_rotation": 90,
-    "margin": (5, 1),
-    "style": "font-Arial",
-}
-
-
-NUMBER_SIZE = 6
+from parametrs import TABLE_PARAMETRS, TEXT_PARAMETRS, NUMBER_SIZE
 
 
 def get_start_number():
@@ -75,22 +49,30 @@ def save_file(doc, file_name):
 
 
 def quit_program(input_str):
-    if input_str.lower() == "q":
-        return True
-    else:
-        return False
+    return input_str.lower() == "q"
 
 
-def programm():
+def display_start_info():
     print("-----------------------------------------")
     print("Программа для генерации файла с лычками")
     print("-----------------------------------------")
 
     print('(Что бы выйти из программы - нажмите "q")')
 
+
+def programm():
     while True:
         start_number = get_start_number()
         file_name = get_file_name()
+
+        # Create a new DXF document.
+        doc = ezdxf.new(dxfversion="R2010")
+
+        doc.layers.add(TABLE_PARAMETRS["layer"])
+
+        doc.styles.new("font-Arial", dxfattribs={"font": "Arial"})
+
+        msp = doc.modelspace()
 
         table = Table(**TABLE_PARAMETRS)
         table.create_grid(msp)
