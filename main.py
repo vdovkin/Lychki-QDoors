@@ -35,6 +35,8 @@ NUMBER_SIZE = 6
 def get_start_number():
     while True:
         input_str = (input("Введите базовый номер: ")).strip()
+        if quit_program(input_str):
+            quit()
         if len(input_str) != NUMBER_SIZE:
             print(f"Число должно быть из {NUMBER_SIZE} знаков")
             continue
@@ -51,6 +53,9 @@ def get_start_number():
 def get_file_name():
     while True:
         input_str = (input("Введите название файла: ")).strip()
+        if quit_program(input_str):
+            quit()
+
         if not input_str.strip():
             print(f"Нельзя вводить пустую строку")
             continue
@@ -69,14 +74,41 @@ def save_file(doc, file_name):
         print(f"{file_name} успешно создан")
 
 
-start_number = get_start_number()
-file_name = get_file_name()
+def quit_program(input_str):
+    if input_str.lower() == "q":
+        return True
+    else:
+        return False
 
 
-table = Table(**TABLE_PARAMETRS)
-table.create_grid(msp)
-text = TextArray(**TEXT_PARAMETRS, start_number=start_number)
-text.generate_text(msp, table.grid)
+def programm():
+    print("-----------------------------------------")
+    print("Программа для генерации файла с лычками")
+    print("-----------------------------------------")
 
-save_file(doc, file_name)
-input("нажмите любую клавишу что бы выйти из программы ")
+    print('(Что бы выйти из программы - нажмите "q")')
+
+    while True:
+        start_number = get_start_number()
+        file_name = get_file_name()
+
+        table = Table(**TABLE_PARAMETRS)
+        table.create_grid(msp)
+        text = TextArray(**TEXT_PARAMETRS, start_number=start_number)
+        text.generate_text(msp, table.grid)
+
+        save_file(doc, file_name)
+
+        while True:
+            input_str = input(
+                "Нажите 'y' если хотите создать еще файл или 'q' что бы выйти из программы: "
+            )
+            if quit_program(input_str):
+                quit()
+
+            if input_str.lower() == "y":
+                break
+
+
+if __name__ == "__main__":
+    programm()
