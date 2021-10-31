@@ -5,7 +5,12 @@ from PyQt5.QtCore import QCoreApplication
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(536, 393)
+        MainWindow.setFixedSize(518, 379)
+        icon = QtGui.QIcon()
+        icon.addPixmap(
+            QtGui.QPixmap("./img/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off
+        )
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: rgb(253, 255, 252);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -56,7 +61,7 @@ class Ui_MainWindow(object):
         self.Header.setObjectName("Header")
         self.verticalLayout.addWidget(self.Header)
         self.gridLayout = QtWidgets.QGridLayout()
-        self.gridLayout.setContentsMargins(-1, 10, -1, 5)
+        self.gridLayout.setContentsMargins(-1, 10, -1, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.basic_number_error = QtWidgets.QLabel(self.centralwidget)
         self.basic_number_error.setMaximumSize(QtCore.QSize(150, 16777215))
@@ -201,6 +206,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.btn_generate.setFont(font)
+        self.btn_generate.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_generate.setStyleSheet(
             "background-color: rgb(64, 64, 63);\n" "color: rgb(253, 255, 252);"
         )
@@ -218,6 +224,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.btn_exit.setFont(font)
+        self.btn_exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_exit.setStyleSheet(
             "background-color: rgb(64, 64, 63);\n" "color: rgb(253, 255, 252);"
         )
@@ -241,11 +248,11 @@ class Ui_MainWindow(object):
         self.Header.setText(
             _translate("MainWindow", "Генератор DFX файла с номерами дверей")
         )
-        self.basic_number_error.setText(_translate("MainWindow", "Заполните поле"))
+        # self.basic_number_error.setText(_translate("MainWindow", "Заполните поле"))
         self.file_name_label.setText(_translate("MainWindow", "Название файла: "))
-        self.file_name_error.setText(_translate("MainWindow", "Заполните поле"))
+        # self.file_name_error.setText(_translate("MainWindow", "Заполните поле"))
         self.basic_number_label.setText(_translate("MainWindow", "Базовый номер: "))
-        self.label_status.setText(_translate("MainWindow", "Файл успешно сгенерирован"))
+        # self.label_status.setText(_translate("MainWindow", "Файл успешно сгенерирован"))
         self.btn_generate.setText(_translate("MainWindow", "Сгенерировать"))
         self.btn_exit.setText(_translate("MainWindow", "Выйти"))
 
@@ -255,7 +262,13 @@ class Ui_MainWindow(object):
 
     def generate_dfx(self):
         _translate = QtCore.QCoreApplication.translate
-        self.label_status.setText(_translate("MainWindow", "Работает"))
+        if self.check_if_empty_field(self.file_name_input):
+            self.label_status.setText(_translate("MainWindow", "Пустое"))
+        else:
+            self.label_status.setText(_translate("MainWindow", "Заполненое"))
+
+    def check_if_empty_field(self, input_field):
+        return not input_field.text()
 
 
 if __name__ == "__main__":

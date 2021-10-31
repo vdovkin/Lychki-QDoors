@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>536</width>
-    <height>393</height>
+    <width>518</width>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>QDoors DFX Generator</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/icon.png</normaloff>../img/icon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(253, 255, 252);</string>
@@ -102,12 +106,12 @@ background-color: rgb(166, 29, 43);</string>
      </widget>
     </item>
     <item>
-     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0,0">
+     <layout class="QGridLayout" name="gridLayout" columnstretch="0,0,0,0">
       <property name="topMargin">
        <number>10</number>
       </property>
       <property name="bottomMargin">
-       <number>5</number>
+       <number>0</number>
       </property>
       <item row="4" column="2">
        <widget class="QLabel" name="basic_number_error">
@@ -292,9 +296,6 @@ background-color: rgb(166, 29, 43);</string>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
-      <property name="margin">
-       <number>5</number>
-      </property>
      </widget>
     </item>
     <item>
@@ -343,6 +344,9 @@ background-color: rgb(166, 29, 43);</string>
           <bold>true</bold>
          </font>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(64, 64, 63);
 color: rgb(253, 255, 252);</string>
@@ -382,6 +386,9 @@ color: rgb(253, 255, 252);</string>
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
          <string notr="true">background-color: rgb(64, 64, 63);

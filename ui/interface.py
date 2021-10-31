@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'QDoors-DFX-Generator.ui'
+# Form implementation generated from reading ui file 'interface.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -14,7 +14,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(536, 393)
+        MainWindow.resize(518, 379)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("../img/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: rgb(253, 255, 252);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -58,7 +61,7 @@ class Ui_MainWindow(object):
         self.Header.setObjectName("Header")
         self.verticalLayout.addWidget(self.Header)
         self.gridLayout = QtWidgets.QGridLayout()
-        self.gridLayout.setContentsMargins(-1, 10, -1, 5)
+        self.gridLayout.setContentsMargins(-1, 10, -1, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.basic_number_error = QtWidgets.QLabel(self.centralwidget)
         self.basic_number_error.setMaximumSize(QtCore.QSize(150, 16777215))
@@ -167,6 +170,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.btn_generate.setFont(font)
+        self.btn_generate.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_generate.setStyleSheet("background-color: rgb(64, 64, 63);\n"
 "color: rgb(253, 255, 252);")
         self.btn_generate.setAutoDefault(False)
@@ -183,6 +187,7 @@ class Ui_MainWindow(object):
         font.setBold(True)
         font.setWeight(75)
         self.btn_exit.setFont(font)
+        self.btn_exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_exit.setStyleSheet("background-color: rgb(64, 64, 63);\n"
 "color: rgb(253, 255, 252);")
         self.btn_exit.setObjectName("btn_exit")
