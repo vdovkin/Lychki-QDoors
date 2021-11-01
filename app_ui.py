@@ -274,6 +274,7 @@ class Ui_MainWindow(object):
                         "MainWindow",
                         f"Файл {file_name}.dxf успешно сгенерирован.",
                     )
+                )
 
             else:
                 self.label_status.setStyleSheet("color: rgb(166, 29, 43);")
