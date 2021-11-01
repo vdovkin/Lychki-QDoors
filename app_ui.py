@@ -1,9 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import QCoreApplication
 
-from parametrs import NUMBER_SIZE
+from parametrs import TABLE_PARAMETRS, TEXT_PARAMETRS, NUMBER_SIZE
 
-from DFXgenerator import dfx_generator
+from DXFgenerator import dxf_generator
 
 
 class Ui_MainWindow(object):
@@ -264,22 +264,23 @@ class Ui_MainWindow(object):
     def run_app(self):
         _translate = QtCore.QCoreApplication.translate
         if self.fields_validation():
-            number = int(self.basic_number_input.text().strip())
+            number = self.basic_number_input.text().strip()
             file_name = self.file_name_input.text().strip()
-            result = dfx_generator(number, file_name)
+            result = dxf_generator(number, file_name, TABLE_PARAMETRS, TEXT_PARAMETRS)
             if result:
                 self.label_status.setStyleSheet("color: rgb(27, 153, 139);")
                 self.label_status.setText(
                     _translate(
-                        "MainWindow", f"Файл {file_name}.dfx успешно сгенерирован"
+                        "MainWindow",
+                        f"Файл {file_name}.dxf успешно сгенерирован.",
                     )
-                )
+
             else:
                 self.label_status.setStyleSheet("color: rgb(166, 29, 43);")
                 self.label_status.setText(
                     _translate(
                         "MainWindow",
-                        f"Возникла ошибка. Возможно открыт файл с таким же названием",
+                        "Возникла ошибка. Возможно открыт файл с таким же названием",
                     )
                 )
 
