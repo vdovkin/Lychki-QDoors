@@ -212,8 +212,18 @@ class Ui_MainWindow(object):
         self.btn_generate.setFont(font)
         self.btn_generate.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_generate.setStyleSheet(
-            "background-color: rgb(64, 64, 63);\n" "color: rgb(253, 255, 252);"
+            """
+            QPushButton {
+            background-color: rgb(64, 64, 63); 
+            color: rgb(253, 255, 252);
+        }
+        QPushButton:hover {
+            background-color: rgb(27, 153, 139);
+            border: none;
+        }
+        """
         )
+        self.btn_generate: hover.setStyleSheet("background-color: rgb(164, 164, 163);")
         self.btn_generate.setAutoDefault(False)
         self.btn_generate.setDefault(False)
         self.btn_generate.setFlat(False)
@@ -230,7 +240,16 @@ class Ui_MainWindow(object):
         self.btn_exit.setFont(font)
         self.btn_exit.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.btn_exit.setStyleSheet(
-            "background-color: rgb(64, 64, 63);\n" "color: rgb(253, 255, 252);"
+            """
+            QPushButton {
+            background-color: rgb(64, 64, 63); 
+            color: rgb(253, 255, 252);
+        }
+        QPushButton:hover {
+            background-color: rgb(166, 29, 43);
+            border: none;
+        }
+        """
         )
         self.btn_exit.setObjectName("btn_exit")
         self.horizontalLayout.addWidget(self.btn_exit)
