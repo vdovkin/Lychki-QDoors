@@ -8,3 +8,5 @@
 
 <p>Basically file has 17 columns and 11 rows.</p>
 <img src="img/preview.jpg">
+
+<p>To use program use executable file 'dist/QDoors D-numbers.exe' or start "app.py"</p>
