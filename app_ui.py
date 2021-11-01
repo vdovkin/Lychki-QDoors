@@ -12,7 +12,9 @@ class Ui_MainWindow(object):
         MainWindow.setFixedSize(518, 379)
         icon = QtGui.QIcon()
         icon.addPixmap(
-            QtGui.QPixmap("./img/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off
+            QtGui.QPixmap(r"D:\Dev\MiniProjects\QDoors_D-numbers\img\icon.png"),
+            QtGui.QIcon.Normal,
+            QtGui.QIcon.Off,
         )
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: rgb(253, 255, 252);")
@@ -36,7 +38,9 @@ class Ui_MainWindow(object):
         self.Logo.setFont(font)
         self.Logo.setStyleSheet("")
         self.Logo.setText("")
-        self.Logo.setPixmap(QtGui.QPixmap("./img/logo.png"))
+        self.Logo.setPixmap(
+            QtGui.QPixmap(r"D:\Dev\MiniProjects\QDoors_D-numbers\img\logo.png")
+        )
         self.Logo.setScaledContents(True)
         self.Logo.setAlignment(
             QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter
@@ -223,7 +227,6 @@ class Ui_MainWindow(object):
         }
         """
         )
-        self.btn_generate: hover.setStyleSheet("background-color: rgb(164, 164, 163);")
         self.btn_generate.setAutoDefault(False)
         self.btn_generate.setDefault(False)
         self.btn_generate.setFlat(False)
