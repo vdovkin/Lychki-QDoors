@@ -7,7 +7,7 @@ from classes.text_array import TextArray
 
 
 def dfx_generator(
-    start_number, file_name, tbl_params=TABLE_PARAMETRS, txt_params=TABLE_PARAMETRS
+    start_number, file_name, tbl_params=TABLE_PARAMETRS, txt_params=TEXT_PARAMETRS
 ):
     # Create a new DXF document.
     doc = ezdxf.new(dxfversion="R2010")
@@ -18,17 +18,19 @@ def dfx_generator(
     table = Table(**tbl_params)
     table.create_grid(msp)
 
+    zeros = ""
     text = TextArray(**txt_params, start_number=start_number, zeros=zeros)
     text.generate_text(msp, table.grid)
 
-    save_file(doc, file_name)
+    result = save_file(doc, file_name)
 
-    while True:
-        input_str = input(
-            "Нажите 'y' если хотите создать еще файл или 'q' что бы выйти из программы: "
-        )
-        if quit_program(input_str):
-            quit()
+    return result
 
-        if input_str.strip().lower() == "y":
-            break
+
+def save_file(doc, file_name):
+    try:
+        doc.saveas(f"{file_name}.dxf")
+    except Exception:
+        return False
+    else:
+        return True

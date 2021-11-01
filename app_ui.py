@@ -3,6 +3,8 @@ from PyQt5.QtCore import QCoreApplication
 
 from parametrs import NUMBER_SIZE
 
+from DFXgenerator import dfx_generator
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -250,11 +252,8 @@ class Ui_MainWindow(object):
         self.Header.setText(
             _translate("MainWindow", "Генератор DFX файла с номерами дверей")
         )
-        # self.basic_number_error.setText(_translate("MainWindow", "Заполните поле"))
         self.file_name_label.setText(_translate("MainWindow", "Название файла: "))
-        # self.file_name_error.setText(_translate("MainWindow", "Заполните поле"))
         self.basic_number_label.setText(_translate("MainWindow", "Базовый номер: "))
-        # self.label_status.setText(_translate("MainWindow", "Файл успешно сгенерирован"))
         self.btn_generate.setText(_translate("MainWindow", "Сгенерировать"))
         self.btn_exit.setText(_translate("MainWindow", "Выйти"))
 
@@ -265,7 +264,24 @@ class Ui_MainWindow(object):
     def run_app(self):
         _translate = QtCore.QCoreApplication.translate
         if self.fields_validation():
-            print("OK")
+            number = int(self.basic_number_input.text().strip())
+            file_name = self.file_name_input.text().strip()
+            result = dfx_generator(number, file_name)
+            if result:
+                self.label_status.setStyleSheet("color: rgb(27, 153, 139);")
+                self.label_status.setText(
+                    _translate(
+                        "MainWindow", f"Файл {file_name}.dfx успешно сгенерирован"
+                    )
+                )
+            else:
+                self.label_status.setStyleSheet("color: rgb(166, 29, 43);")
+                self.label_status.setText(
+                    _translate(
+                        "MainWindow",
+                        f"Возникла ошибка. Возможно открыт файл с таким же названием",
+                    )
+                )
 
     def empty_input_validation(self, input_field, error_field):
         _translate = QtCore.QCoreApplication.translate
