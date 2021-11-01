@@ -1,9 +1,10 @@
-This program can create a table in dxf format with special numbers. Needed for the door making machine.
+<h2>QDoors Door Numbers DXF Generator</h2>
+<p>This program can create a table in dxf format with special numbers. Needed for the door making machine.</p>
 
-Basic interface
-![](img/UIprevies.jpg)
+<h3>Basic interface</h3>
+<img src="img/UIpreview.jpg" >
 
-Just enter file name and start number and generate your dxf file.
+<p>Just enter file name and start number and generate your dxf file.</p>
 
-Basically file has 17 columns and 11 rows.
-![](img/preview.jpg)
+<p>Basically file has 17 columns and 11 rows.</p>
+<img src="img/preview.jpg">
