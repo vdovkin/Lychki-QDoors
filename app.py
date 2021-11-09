@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+import res
 
 if __name__ == "__main__":
     import sys

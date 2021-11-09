@@ -12,9 +12,7 @@ class Ui_MainWindow(object):
         MainWindow.setFixedSize(518, 379)
         icon = QtGui.QIcon()
         icon.addPixmap(
-            QtGui.QPixmap(r"D:\Dev\MiniProjects\QDoors_D-numbers\img\icon.png"),
-            QtGui.QIcon.Normal,
-            QtGui.QIcon.Off,
+            QtGui.QPixmap(":/img/img/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off
         )
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("background-color: rgb(253, 255, 252);")
@@ -38,9 +36,7 @@ class Ui_MainWindow(object):
         self.Logo.setFont(font)
         self.Logo.setStyleSheet("")
         self.Logo.setText("")
-        self.Logo.setPixmap(
-            QtGui.QPixmap(r"D:\Dev\MiniProjects\QDoors_D-numbers\img\logo.png")
-        )
+        self.Logo.setPixmap(QtGui.QPixmap(":/img/img/logo.png"))
         self.Logo.setScaledContents(True)
         self.Logo.setAlignment(
             QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter
