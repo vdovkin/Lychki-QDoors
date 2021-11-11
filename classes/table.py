@@ -42,10 +42,37 @@ class Table:
             bp["x"] += self.lenght_x
             bp["y"] -= self.lenght_y * self.num_y
 
+    def create_border(self, msp):
+        bp = self.basic_point.copy()
+        msp.add_line(
+            (bp["x"], bp["y"]),
+            (bp["x"] + self.lenght_x * self.num_x, bp["y"]),
+            dxfattribs={"layer": self.layer},
+        )
+        msp.add_line(
+            (bp["x"], bp["y"]),
+            (bp["x"], bp["y"] + self.num_y * self.lenght_y),
+            dxfattribs={"layer": self.layer},
+        )
+
+        bp["y"] += self.lenght_y * self.num_y
+        msp.add_line(
+            (bp["x"], bp["y"]),
+            (bp["x"] + self.lenght_x * self.num_x, bp["y"]),
+            dxfattribs={"layer": self.layer},
+        )
+        bp["y"] = 0
+        bp["x"] += self.lenght_x * self.num_x
+        msp.add_line(
+            (bp["x"], bp["y"]),
+            (bp["x"], bp["y"] + self.num_y * self.lenght_y),
+            dxfattribs={"layer": self.layer},
+        )
+
     def generete_cell_grid(self):
         grid = []
         x_point = self.lenght_x
-        y_point = self.lenght_y * self.num_y
+        y_point = self.lenght_y * (self.num_y - 1)
 
         for j in range(self.num_y):
             row = []

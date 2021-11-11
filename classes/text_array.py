@@ -16,7 +16,7 @@ class TextArray:
                 "rotation": self.font_rotation,
                 "style": self.style,
             },
-        ).set_pos(position, align="RIGHT")
+        ).set_pos(position, align="LEFT")
 
     def generate_numbers(self, row, columns):
         numbers_grid = []

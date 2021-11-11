@@ -12,7 +12,7 @@ def dxf_generator(start_number, file_name, tbl_params, txt_params):
     msp = doc.modelspace()
 
     table = Table(**tbl_params)
-    table.create_grid(msp)
+    table.create_border(msp)
 
     zeros = starting_zeros(start_number)
 
